@@ -1,0 +1,42 @@
+<mat-card>
+  <h2>Miembros de la organización</h2>
+
+  <div class="invite-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput [(ngModel)]="newEmail" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="invite()">Invitar</button>
+  </div>
+
+  <table mat-table [dataSource]="members" class="mat-elevation-z2">
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Correo</th>
+      <td mat-cell *matCellDef="let m">{{ m.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>Rol</th>
+      <td mat-cell *matCellDef="let m">
+        <mat-select [(value)]="m.role" (selectionChange)="changeRole(m.email, $event.value)">
+          <mat-option value="Owner">Owner</mat-option>
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="Member">Member</mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let m">
+        <button mat-icon-button color="warn" (click)="remove(m.email)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['email', 'role', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['email', 'role', 'actions']"></tr>
+  </table>
+</mat-card>

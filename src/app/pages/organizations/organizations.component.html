@@ -1,0 +1,26 @@
+<mat-card>
+  <h2>Organizaciones</h2>
+  <table mat-table [dataSource]="organizations" class="mat-elevation-z2">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let org">{{ org.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let org">{{ org.name }}</td>
+    </ng-container>
+
+    <!-- Region Column -->
+    <ng-container matColumnDef="region">
+      <th mat-header-cell *matHeaderCellDef>Región</th>
+      <td mat-cell *matCellDef="let org">{{ org.region }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['id', 'name', 'region']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'region']"></tr>
+  </table>
+</mat-card>

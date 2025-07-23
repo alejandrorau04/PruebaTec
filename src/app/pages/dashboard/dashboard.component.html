@@ -1,0 +1,9 @@
+<mat-card>
+  <h2>Bienvenido</h2>
+  <p>Tu sesión está activa como:</p>
+  <strong>{{ userEmail }}</strong>
+
+  <div style="margin-top: 2rem;">
+    <button mat-raised-button color="warn" (click)="signOut()">Cerrar sesión</button>
+  </div>
+</mat-card>
